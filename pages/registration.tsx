@@ -1,9 +1,10 @@
 import React from "react";
 import * as yup from "yup";
-import { View, Button, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import { FormInput } from "../components/formInputs";
 import { Types } from "../models/userTypes";
+import { colors } from "../theme";
 
 const userSchema = yup.object().shape({
   name: yup.string().required("O nome é obrigatório."),
@@ -33,7 +34,9 @@ export default function RegisterPage() {
             <FormInput name="email" placeholder="Email" />
             <FormInput name="password" placeholder="Senha" secureTextEntry />
             <FormInput name="type" placeholder="Tipo de Usuário" />
-            <Button title="Cadastrar" onPress={() => handleSubmit()} />
+            <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
+              <Text style={styles.buttonText}>Cadastrar</Text>
+            </TouchableOpacity>
           </>
         )}
       </Formik>
@@ -46,5 +49,17 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: "center",
+    backgroundColor: colors.bg,
+  },
+  button: {
+    backgroundColor: colors.secondary,
+    borderWidth: 1,
+    padding: 8,
+    borderRadius: 20,
+  },
+  buttonText: {
+    color: colors.textLight,
+    textAlign: "center",
+    padding: 5,
   },
 });
