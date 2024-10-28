@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
+  "proxy": "http://localhost:3030",
   "dependencies": {
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
@@ -18,6 +19,7 @@
     "formik": "^2.4.6",
     "react": "18.2.0",
     "react-native": "0.74.5",
+    "react-native-sweet-alert": "^3.5.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {

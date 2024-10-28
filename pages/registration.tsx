@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import * as yup from "yup";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import { FormInput } from "../components/formInputs";
 import { Types } from "../models/userTypes";
 import { colors } from "../theme";
+import { config } from "../config";
 
 const userSchema = yup.object().shape({
   name: yup.string().required("O nome é obrigatório."),
@@ -20,9 +22,23 @@ const userSchema = yup.object().shape({
 
 export default function RegisterPage() {
   const initialValues = { name: "", email: "", password: "", type: "" };
+  const [message, setMessage] = useState("");
+  const [visible, setVisible] = useState(false);
 
-  const handleSubmit = (values: typeof initialValues) => {
-    console.log(values);
+  const handleSubmit = async (values: typeof initialValues) => {
+    try {
+      const response = await axios.post(`${config.API_URL}/users`, values);
+      if (response.data.status === 200 && response.data.status === 201) {
+        setMessage(response.data.message);
+        setVisible(true);
+      }
+      setMessage(response.data.error);
+      setVisible(true);
+    } catch (error: any) {
+      console.error(error);
+      setMessage(`${error}` || "Erro no registro.");
+      setVisible(true);
+    }
   };
 
   return (
@@ -40,6 +56,15 @@ export default function RegisterPage() {
           </>
         )}
       </Formik>
+
+      {visible && (
+        <View style={styles.messageContainer}>
+          <Text style={styles.messageText}>{message}</Text>
+          <TouchableOpacity onPress={() => setVisible(false)}>
+            <Text style={styles.closeText}>Fechar</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
@@ -61,5 +86,19 @@ const styles = StyleSheet.create({
     color: colors.textLight,
     textAlign: "center",
     padding: 5,
+  },
+  messageContainer: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: "lightgray",
+    borderRadius: 5,
+  },
+  messageText: {
+    color: "black",
+  },
+  closeText: {
+    color: "blue",
+    marginTop: 5,
+    textAlign: "center",
   },
 });
