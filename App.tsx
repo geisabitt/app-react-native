@@ -1,104 +1,24 @@
-import { FlatList, StyleSheet, View } from "react-native";
-import { Product } from "./components/products";
-
-const products = [
-  {
-    id: "1",
-    title: "Inteligência Emocional",
-    price: 40.99,
-    image: require("./assets/mock/1.png"), // Usando require() para imagem local
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: "2",
-    title: "Deixe de ser Pobre",
-    price: 40.99,
-    image: require("./assets/mock/2.png"),
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: "3",
-    title: "Desenvolvendo Aplicativos com Chat GPT",
-    price: 40.99,
-    image: require("./assets/mock/3.png"),
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: "4",
-    title: "Código Limpo",
-    price: 40.99,
-    image: require("./assets/mock/4.png"),
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: "5",
-    title: "Gatilhos Mentais",
-    price: 40.99,
-    image: require("./assets/mock/5.png"),
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: "6",
-    title: "Inteligência Emocional",
-    price: 40.99,
-    image: require("./assets/mock/1.png"), // Usando require() para imagem local
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: "7",
-    title: "Deixe de ser Pobre",
-    price: 40.99,
-    image: require("./assets/mock/2.png"),
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: "8",
-    title: "Desenvolvendo Aplicativos com Chat GPT",
-    price: 40.99,
-    image: require("./assets/mock/3.png"),
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: "9",
-    title: "Código Limpo",
-    price: 40.99,
-    image: require("./assets/mock/4.png"),
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    id: "10",
-    title: "Gatilhos Mentais",
-    price: 40.99,
-    image: require("./assets/mock/5.png"),
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-];
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { MainLayout } from "./components/mainLayout";
+import ProductsPage from "./pages/products";
+import ConfigPage from "./pages/config";
+import LoginPage from "./pages/login";
+import AdminPage from "./pages/admin";
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <FlatList data={products} keyExtractor={(item) => item.id} renderItem={({ item }) => <Product id={item.id} title={item.title} price={item.price} image={item.image} description={item.description} />} numColumns={2} contentContainerStyle={styles.listContainer} />
-    </View>
+    <NavigationContainer>
+      <MainLayout>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Home" component={ProductsPage} />
+          <Stack.Screen name="Config" component={ConfigPage} />
+          <Stack.Screen name="Login" component={LoginPage} />
+          <Stack.Screen name="Admin" component={AdminPage} />
+        </Stack.Navigator>
+      </MainLayout>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#141518",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: 50,
-  },
-  listContainer: {
-    minWidth: "100%",
-    maxWidth: 412,
-    marginVertical: 0,
-    marginHorizontal: "auto",
-    padding: 0,
-  },
-  text: {
-    color: "#ffffff",
-    fontSize: 20,
-  },
-});
