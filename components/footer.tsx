@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { colors } from "../theme";
 
 export function Footer() {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -18,6 +19,10 @@ export function Footer() {
         <Image source={require("../assets/icons/user.png")} />
         <Text style={styles.text}>Login</Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("Cadastro")}>
+        <Image source={require("../assets/icons/user.png")} />
+        <Text style={styles.text}>Cadastro</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -26,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 60,
-    backgroundColor: "#1F6B5E",
+    backgroundColor: colors.secondary,
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -41,6 +46,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: "#FF9B40",
+    color: colors.accent,
   },
 });

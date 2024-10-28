@@ -1,5 +1,6 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import { Product } from "../components/product";
+import { colors } from "../theme";
 
 const products = [
   {
@@ -85,7 +86,7 @@ export default function ProductsPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#141518",
+    backgroundColor: colors.bg,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   text: {
-    color: "#ffffff",
+    color: colors.textLight,
     fontSize: 20,
   },
 });
