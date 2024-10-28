@@ -1,6 +1,7 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { colors } from "../theme";
 
 export function Header() {
   const navigation = useNavigation<NavigationProp<any>>();
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 90,
-    backgroundColor: "#1F6B5E",
+    backgroundColor: colors.secondary,
     paddingTop: 20,
     paddingRight: 20,
     justifyContent: "center",
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: "#FF9B40",
+    color: colors.accent,
     fontWeight: "bold",
   },
 });

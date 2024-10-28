@@ -1,4 +1,5 @@
 import { StyleSheet, Image, Text, View } from "react-native";
+import { colors } from "../theme";
 
 export interface ProductProps {
   id: string;
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 6,
     borderRadius: 10,
-    backgroundColor: "#4B4B4B",
+    backgroundColor: colors.bgForeground,
   },
   containerText: {
     padding: 10,
@@ -46,21 +47,21 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
   },
   title: {
-    color: "#ffffff",
+    color: colors.textLight,
     fontFamily: "Roboto",
     fontSize: 14,
     fontStyle: "normal",
     fontWeight: "400",
   },
   description: {
-    color: "#ffffff",
+    color: colors.textLight,
     fontFamily: "Roboto",
     fontSize: 10,
     fontStyle: "normal",
     fontWeight: "400",
   },
   price: {
-    color: "#448B48",
+    color: colors.success,
     fontFamily: "Roboto",
     fontSize: 12,
     fontStyle: "normal",
