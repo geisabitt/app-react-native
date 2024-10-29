@@ -8,6 +8,7 @@
 - **Mensagens de Sucesso e Erro**: Exibe mensagens ao usuário sobre o sucesso ou falha do registro.
 - **Integração com API**: Conecta-se a uma API RESTful para registrar usuários, com tratamento de erros.
 - A api para esse apricativo enconta-se no repositório [geisabitt/api-nestjs](https://github.com/geisabitt/api-nestjs) clique no link faça o clone e a configuração da api antes de iniciar o aplicativo.
+- **Gerenciamento de Produtos** Criar produtos, listar produtos, ver produtos por id e editar produtos.
 - **Personalização de Estilo**: Permite personalização de cores e estilos para uma melhor experiência do usuário.
 
 ## Tecnologias Utilizadas
