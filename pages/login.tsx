@@ -6,6 +6,7 @@ import { Formik } from "formik";
 import { FormInput } from "../components/formInputs";
 import axios from "axios";
 import { config } from "../config";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 
 const loginSchema = yup.object().shape({
   email: yup.string().email("O email deve ser um endereço de email válido.").required("O email é obrigatório."),
@@ -18,6 +19,7 @@ const loginSchema = yup.object().shape({
 });
 
 export default function LoginPage() {
+  const navigation = useNavigation<NavigationProp<any>>();
   const initialValues = { email: "", password: "" };
   const [message, setMessage] = useState("");
   const [visible, setVisible] = useState(false);
@@ -50,6 +52,9 @@ export default function LoginPage() {
           </>
         )}
       </Formik>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Cadastro")}>
+        <Text style={styles.buttonText}>Cadastro</Text>
+      </TouchableOpacity>
 
       {visible && (
         <View style={styles.messageContainer}>
@@ -73,6 +78,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.secondary,
     borderWidth: 1,
+    marginTop: 10,
     padding: 8,
     borderRadius: 20,
   },

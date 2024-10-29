@@ -1,4 +1,5 @@
-import { StyleSheet, Image, Text, View } from "react-native";
+import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { colors } from "../theme";
 
 export interface ProductProps {
@@ -10,8 +11,9 @@ export interface ProductProps {
 }
 
 export function Product(props: ProductProps) {
+  const navigation = useNavigation<NavigationProp<any>>();
   return (
-    <View id={props.id} style={styles.container}>
+    <TouchableOpacity id={props.id} style={styles.container} onPress={() => navigation.navigate("Produto", { id: props.id })}>
       <Image style={styles.img} source={props.image} />
       <View style={styles.containerText}>
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
@@ -22,7 +24,7 @@ export function Product(props: ProductProps) {
         </Text>
         <Text style={styles.price}>R$ {props.price}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

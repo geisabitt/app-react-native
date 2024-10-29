@@ -11,17 +11,13 @@ export function Footer() {
         <Image source={require("../assets/icons/home.png")} />
         <Text style={styles.text}>Home</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("Config")}>
-        <Image source={require("../assets/icons/config.png")} />
-        <Text style={styles.text}>Config</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("Login")}>
         <Image source={require("../assets/icons/user.png")} />
-        <Text style={styles.text}>Login</Text>
+        <Text style={styles.text}>Acesso</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("Cadastro")}>
-        <Image source={require("../assets/icons/user.png")} />
-        <Text style={styles.text}>Cadastro</Text>
+      <TouchableOpacity style={styles.link} onPress={() => navigation.navigate("Novo Produto")}>
+        <Image source={require("../assets/icons/bagShop.png")} />
+        <Text style={styles.text}>Novo Produto</Text>
       </TouchableOpacity>
     </View>
   );

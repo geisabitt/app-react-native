@@ -1,8 +1,11 @@
-import { FlatList, StyleSheet, View } from "react-native";
-import { Product } from "../components/product";
+import { FlatList, StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import { Product, ProductProps } from "../components/product";
 import { colors } from "../theme";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { config } from "../config";
 
-const products = [
+const mockProducts = [
   {
     id: "1",
     title: "Inteligência Emocional",
@@ -76,9 +79,25 @@ const products = [
 ];
 
 export default function ProductsPage() {
+  const [products, setProducts] = useState<ProductProps[]>([]);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get(`${config.API_URL}/products`);
+      setProducts(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <FlatList data={products} keyExtractor={(item) => item.id} renderItem={({ item }) => <Product id={item.id} title={item.title} price={item.price} image={item.image} description={item.description} />} numColumns={2} contentContainerStyle={styles.listContainer} />
+      {/* <FlatList data={mockProducts} keyExtractor={(item) => item.id} renderItem={({ item }) => <Product id={item.id} title={item.title} price={item.price} image={require("../assets/mock/4.png")} description={item.description} />} numColumns={2} contentContainerStyle={styles.listContainer} /> */}
+      <FlatList data={products} keyExtractor={(item) => item.id} renderItem={({ item }) => <Product id={item.id} title={item.title} price={item.price} image={{ uri: item.image }} description={item.description} />} numColumns={2} contentContainerStyle={styles.listContainer} />
     </View>
   );
 }
